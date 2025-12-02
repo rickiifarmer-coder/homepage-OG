@@ -1,66 +1,184 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Custom Homepage</title>
+  <title>AR ♥</title>
+
+  <!-- Pretty cursive + soft modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Nunito:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      background: #1f1f2e;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 40px;
     }
 
-    #logo {
-      font-size: 48px;
-      font-weight: bold;
-      margin-top: 80px;
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at top left, #f3eee7 0, #e7f0e7 40%, #f6f0ea 100%);
+      font-family: "Nunito", sans-serif;
+      color: #4c3b33;
     }
 
-    .search-box input {
-      width: 60%;
-      max-width: 600px;
-      padding: 15px;
-      font-size: 20px;
-      border-radius: 50px;
-      border: none;
-      outline: none;
+    .shell {
+      width: min(780px, 100%);
+      padding: 40px 32px;
+      border-radius: 26px;
+      background: rgba(255, 252, 245, 0.96);
+      box-shadow:
+        0 20px 40px rgba(80, 64, 48, 0.18),
+        0 0 0 1px rgba(175, 150, 120, 0.35);
+      border: 1px solid rgba(220, 195, 165, 0.5);
     }
 
-    .bookmark-bar {
-      margin-top: 40px;
+    /* ✨ BIG CURSIVE TITLE ✨ */
+    .brand-main {
+      font-family: "Dancing Script", cursive;
+      font-size: 68px;
+      text-align: center;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.03em;
+      color: #6f4a37;
     }
 
-    .bookmark {
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 20px;
-      background: #3b3b52;
-      display: inline-block;
+    .brand-sub {
+      text-align: center;
+      font-size: 16px;
+      opacity: 0.75;
+      margin-bottom: 30px;
+    }
+
+    .quote {
+      margin-bottom: 26px;
+      font-style: italic;
+      font-size: 15px;
+      color: #6a584e;
+      text-align: center;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* Link Cards */
+    .link-card {
       text-decoration: none;
-      color: white;
-      font-size: 18px;
+      background: #f4efe7;
+      border-radius: 20px;
+      padding: 16px 18px;
+      border: 1px solid rgba(208, 186, 160, 0.7);
+      color: #4b3b32;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
     }
+
+    .link-card.main {
+      background: #e7f1e6;
+      border-color: rgba(147, 176, 143, 0.9);
+    }
+
+    .link-title {
+      font-family: "Dancing Script", cursive;
+      font-size: 28px;  /* cursive slightly bigger */
+    }
+
+    .link-sub {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .link-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 22px rgba(90, 68, 52, 0.2);
+      background: #f9f3eb;
+    }
+
+    .link-card.main:hover {
+      background: #edf6ec;
+    }
+
+    .footer {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
   </style>
 </head>
 
 <body>
+  <div class="shell">
 
-  <div id="logo">🚀 My Start Page</div>
+    <!-- 🌸 TITLE UPDATED TO AR ♥ -->
+    <div class="brand-main">AR ♥</div>
+    <div class="brand-sub">your soft little study space ✧</div>
 
-  <div class="search-box">
-    <form action="https://www.google.com/search" method="GET">
-      <input type="text" name="q" placeholder="Search anything..." autofocus>
-    </form>
+    <div class="quote">
+      “Show up for yourself today, even if it’s just one tiny assignment.”
+    </div>
+
+    <div class="links-grid">
+      <!-- Blackboard -->
+      <a
+        class="link-card main"
+        href="https://acconline.austincc.edu/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="link-title">Blackboard</div>
+        <div class="link-sub">All your classes, assignments, and due dates.</div>
+      </a>
+
+      <!-- MyACC -->
+      <a
+        class="link-card"
+        href="https://web7.austincc.edu/myacc/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="link-title">MyACC</div>
+        <div class="link-sub">Check your schedule & student portal info.</div>
+      </a>
+
+      <!-- ChatGPT (study help) -->
+      <a
+        class="link-card"
+        href="https://chatgpt.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="link-title">Study Buddy</div>
+        <div class="link-sub">Quick explanations, writing help, anything.</div>
+      </a>
+
+      <!-- Google Drive -->
+      <a
+        class="link-card"
+        href="https://drive.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="link-title">Docs & Notes</div>
+        <div class="link-sub">Your files all in one place.</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      made with softness & coffee ♡ you’re doing amazing
+    </div>
+
   </div>
-
-  <div class="bookmark-bar">
-    <a class="bookmark" href="https://stackoverflow.com">StackOverflow</a>
-    <a class="bookmark" href="https://github.com">GitHub</a>
-    <a class="bookmark" href="https://chatgpt.com">ChatGPT</a>
-  </div>
-
 </body>
 </html>
