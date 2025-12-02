@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -54,12 +55,14 @@
       margin-bottom: 30px;
     }
 
+    /* ✨ DAILY QUOTE AREA */
     .quote {
       margin-bottom: 26px;
       font-style: italic;
-      font-size: 15px;
+      font-size: 17px;
       color: #6a584e;
       text-align: center;
+      min-height: 40px;
     }
 
     .links-grid {
@@ -80,7 +83,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
     .link-card.main {
@@ -88,24 +91,34 @@
       border-color: rgba(147, 176, 143, 0.9);
     }
 
+    /* 🌸 WIGGLE ANIMATION */
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      15% { transform: rotate(2deg); }
+      30% { transform: rotate(-2deg); }
+      45% { transform: rotate(1.5deg); }
+      60% { transform: rotate(-1.5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .link-card:hover {
+      animation: wiggle 0.45s ease;
+      background: #f9f3eb;
+      box-shadow: 0 12px 22px rgba(90, 68, 52, 0.2);
+    }
+
+    .link-card.main:hover {
+      background: #edf6ec;
+    }
+
     .link-title {
       font-family: "Dancing Script", cursive;
-      font-size: 28px;  /* cursive slightly bigger */
+      font-size: 28px;
     }
 
     .link-sub {
       font-size: 14px;
       opacity: 0.85;
-    }
-
-    .link-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 22px rgba(90, 68, 52, 0.2);
-      background: #f9f3eb;
-    }
-
-    .link-card.main:hover {
-      background: #edf6ec;
     }
 
     .footer {
@@ -121,58 +134,36 @@
 <body>
   <div class="shell">
 
-    <!-- 🌸 TITLE UPDATED TO AR ♥ -->
+    <!-- 🌸 TITLE -->
     <div class="brand-main">AR ♥</div>
     <div class="brand-sub">your soft little study space ✧</div>
 
-    <div class="quote">
-      “Show up for yourself today, even if it’s just one tiny assignment.”
-    </div>
+    <!-- DAILY QUOTE AREA -->
+    <div id="dailyQuote" class="quote"></div>
 
+    <!-- BUTTON GRID -->
     <div class="links-grid">
-      <!-- Blackboard -->
-      <a
-        class="link-card main"
-        href="https://acconline.austincc.edu/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+
+      <a class="link-card main" href="https://acconline.austincc.edu/" target="_blank">
         <div class="link-title">Blackboard</div>
-        <div class="link-sub">All your classes, assignments, and due dates.</div>
+        <div class="link-sub">All your classes & assignments.</div>
       </a>
 
-      <!-- MyACC -->
-      <a
-        class="link-card"
-        href="https://web7.austincc.edu/myacc/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a class="link-card" href="https://web7.austincc.edu/myacc/" target="_blank">
         <div class="link-title">MyACC</div>
-        <div class="link-sub">Check your schedule & student portal info.</div>
+        <div class="link-sub">Your student portal.</div>
       </a>
 
-      <!-- ChatGPT (study help) -->
-      <a
-        class="link-card"
-        href="https://chatgpt.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a class="link-card" href="https://chatgpt.com/" target="_blank">
         <div class="link-title">Study Buddy</div>
-        <div class="link-sub">Quick explanations, writing help, anything.</div>
+        <div class="link-sub">Help anytime you need it.</div>
       </a>
 
-      <!-- Google Drive -->
-      <a
-        class="link-card"
-        href="https://drive.google.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <div class="link-title">Docs & Notes</div>
-        <div class="link-sub">Your files all in one place.</div>
+      <a class="link-card" href="https://drive.google.com" target="_blank">
+        <div class="link-title">Notes & Docs</div>
+        <div class="link-sub">Your files, organized.</div>
       </a>
+
     </div>
 
     <div class="footer">
@@ -180,5 +171,25 @@
     </div>
 
   </div>
+
+  <!-- ✨ DAILY INSPIRATIONAL QUOTE SCRIPT -->
+  <script>
+    const quotes = [
+      "“You are capable of absolutely anything you decide to do.”",
+      "“Small steps still move you forward.”",
+      "“You don’t need to be perfect—just consistent.”",
+      "“Future you is already proud of you.”",
+      "“Even on tough days, you are still growing.”",
+      "“You are stronger than you think.”",
+      "“Progress is progress, no matter how small.”",
+      "“Show up for yourself today, even gently.”",
+      "“You deserve good things, always.”",
+      "“Your effort today is building your tomorrow.”"
+    ];
+
+    const today = new Date().getDate();
+    document.getElementById("dailyQuote").textContent = quotes[today % quotes.length];
+  </script>
+
 </body>
 </html>
