@@ -22,20 +22,38 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: radial-gradient(circle at top left, #f3eee7 0, #e7f0e7 40%, #f6f0ea 100%);
       font-family: "Nunito", sans-serif;
-      color: #4c3b33;
+      color: #f7f3ea;
+      background: linear-gradient(135deg, #101b16 0%, #203328 45%, #3b2a20 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 🌿 soft plant / leafy blobs in background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top left, rgba(162, 192, 145, 0.38) 0, transparent 55%),
+        radial-gradient(circle at bottom right, rgba(190, 163, 132, 0.38) 0, transparent 55%),
+        radial-gradient(ellipse at top right, rgba(110, 140, 112, 0.3) 0, transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: 0.9;
+      z-index: -1;
     }
 
     .shell {
       width: min(780px, 100%);
-      padding: 40px 32px;
+      padding: 40px 32px 30px;
       border-radius: 26px;
-      background: rgba(255, 252, 245, 0.96);
+      background: rgba(20, 26, 21, 0.9);
       box-shadow:
-        0 20px 40px rgba(80, 64, 48, 0.18),
-        0 0 0 1px rgba(175, 150, 120, 0.35);
-      border: 1px solid rgba(220, 195, 165, 0.5);
+        0 22px 46px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(143, 118, 90, 0.5);
+      border: 1px solid rgba(175, 146, 116, 0.7);
+      backdrop-filter: blur(14px);
     }
 
     /* ✨ BIG CURSIVE TITLE ✨ */
@@ -43,52 +61,103 @@
       font-family: "Dancing Script", cursive;
       font-size: 68px;
       text-align: center;
-      margin: 0 0 10px 0;
+      margin: 0 0 8px 0;
       letter-spacing: 0.03em;
-      color: #6f4a37;
+      color: #f4e2cf;
     }
 
     .brand-sub {
       text-align: center;
       font-size: 16px;
-      opacity: 0.75;
-      margin-bottom: 30px;
+      opacity: 0.8;
+      margin-bottom: 26px;
+      color: #e1d4c4;
     }
 
-    /* ✨ DAILY QUOTE AREA */
+    /* 🔎 Search bar */
+    .search-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .search-form {
+      display: flex;
+      width: min(520px, 100%);
+      background: rgba(18, 24, 20, 0.9);
+      border-radius: 999px;
+      padding: 4px;
+      border: 1px solid rgba(189, 166, 139, 0.8);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 16px;
+      font-size: 15px;
+      color: #f6ede0;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: rgba(244, 227, 205, 0.7);
+    }
+
+    .search-button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 18px;
+      background: #c99b6f;
+      color: #26160f;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-button:hover {
+      background: #ddb286;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ✨ DAILY QUOTE AREA – BIGGER & CUTER */
     .quote {
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       font-style: italic;
-      font-size: 17px;
-      color: #6a584e;
+      font-size: 22px;
+      line-height: 1.5;
+      color: #f0e0d0;
       text-align: center;
-      min-height: 40px;
+      min-height: 48px;
     }
 
     .links-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     /* Link Cards */
     .link-card {
       text-decoration: none;
-      background: #f4efe7;
+      background: rgba(39, 33, 27, 0.95);
       border-radius: 20px;
       padding: 16px 18px;
-      border: 1px solid rgba(208, 186, 160, 0.7);
-      color: #4b3b32;
+      border: 1px solid rgba(194, 163, 131, 0.9);
+      color: #f7e8d7;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     }
 
     .link-card.main {
-      background: #e7f1e6;
-      border-color: rgba(147, 176, 143, 0.9);
+      background: rgba(40, 56, 42, 0.97);
+      border-color: rgba(164, 192, 157, 0.95);
     }
 
     /* 🌸 WIGGLE ANIMATION */
@@ -103,31 +172,44 @@
 
     .link-card:hover {
       animation: wiggle 0.45s ease;
-      background: #f9f3eb;
-      box-shadow: 0 12px 22px rgba(90, 68, 52, 0.2);
+      background: rgba(60, 48, 39, 0.98);
+      border-color: rgba(218, 185, 150, 1);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
     }
 
     .link-card.main:hover {
-      background: #edf6ec;
+      background: rgba(54, 76, 57, 0.98);
     }
 
     .link-title {
       font-family: "Dancing Script", cursive;
       font-size: 28px;
+      color: #f8e9da;
     }
 
     .link-sub {
       font-size: 14px;
-      opacity: 0.85;
+      opacity: 0.88;
+      color: #f2dfcb;
     }
 
+    /* FOOTER with WEATHER + TIME */
     .footer {
-      margin-top: 10px;
+      margin-top: 16px;
       text-align: center;
-      font-size: 12px;
-      opacity: 0.7;
+      font-size: 14px;
+      opacity: 0.9;
+      color: #f0ddca;
     }
 
+    @media (max-width: 600px) {
+      .shell {
+        padding: 28px 20px 22px;
+      }
+      .brand-main {
+        font-size: 52px;
+      }
+    }
   </style>
 </head>
 
@@ -138,57 +220,123 @@
     <div class="brand-main">AR ♥</div>
     <div class="brand-sub">your soft little study space ✧</div>
 
+    <!-- 🔎 GOOGLE SEARCH BAR -->
+    <div class="search-wrap">
+      <form
+        class="search-form"
+        action="https://www.google.com/search"
+        method="GET"
+        target="_blank"
+      >
+        <input
+          class="search-input"
+          type="text"
+          name="q"
+          placeholder="Search the universe (or just your homework)…"
+        />
+        <button class="search-button" type="submit">search</button>
+      </form>
+    </div>
+
     <!-- DAILY QUOTE AREA -->
     <div id="dailyQuote" class="quote"></div>
 
     <!-- BUTTON GRID -->
     <div class="links-grid">
 
-      <a class="link-card main" href="https://acconline.austincc.edu/" target="_blank">
+      <a class="link-card main" href="https://acconline.austincc.edu/" target="_blank" rel="noopener noreferrer">
         <div class="link-title">Blackboard</div>
-        <div class="link-sub">All your classes & assignments.</div>
+        <div class="link-sub">All your classes & assignments in one place.</div>
       </a>
 
-      <a class="link-card" href="https://web7.austincc.edu/myacc/" target="_blank">
+      <a class="link-card" href="https://web7.austincc.edu/myacc/" target="_blank" rel="noopener noreferrer">
         <div class="link-title">MyACC</div>
-        <div class="link-sub">Your student portal.</div>
+        <div class="link-sub">Your student portal & schedule.</div>
       </a>
 
-      <a class="link-card" href="https://chatgpt.com/" target="_blank">
+      <a class="link-card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
         <div class="link-title">Study Buddy</div>
-        <div class="link-sub">Help anytime you need it.</div>
+        <div class="link-sub">Ask questions, get help, keep moving.</div>
       </a>
 
-      <a class="link-card" href="https://drive.google.com" target="_blank">
+      <a class="link-card" href="https://drive.google.com" target="_blank" rel="noopener noreferrer">
         <div class="link-title">Notes & Docs</div>
-        <div class="link-sub">Your files, organized.</div>
+        <div class="link-sub">Your files, calm and organized.</div>
       </a>
 
     </div>
 
-    <div class="footer">
-      made with softness & coffee ♡ you’re doing amazing
+    <div class="footer" id="footerInfo">
+      loading weather & time…
     </div>
 
   </div>
 
-  <!-- ✨ DAILY INSPIRATIONAL QUOTE SCRIPT -->
+  <!-- ✨ QUOTES + WEATHER + TIME SCRIPT -->
   <script>
+    /* 🌸 Cute, warm, silly, happy quotes */
     const quotes = [
-      "“You are capable of absolutely anything you decide to do.”",
-      "“Small steps still move you forward.”",
-      "“You don’t need to be perfect—just consistent.”",
-      "“Future you is already proud of you.”",
-      "“Even on tough days, you are still growing.”",
-      "“You are stronger than you think.”",
-      "“Progress is progress, no matter how small.”",
-      "“Show up for yourself today, even gently.”",
-      "“You deserve good things, always.”",
-      "“Your effort today is building your tomorrow.”"
+      "You are allowed to take up space, even on the internet.",
+      "Somewhere in the future, you’re so glad you didn’t give up today.",
+      "You’ve already survived all your hardest days so far.",
+      "Your pace is perfect for the life you're living.",
+      "Rest is productive, too.",
+      "You’re not behind. You’re on your own beautiful timeline.",
+      "You have done hard things before. You can do this again.",
+      "It’s okay if today is a little messy — you’re still magic.",
+      "Drink water, breathe, keep going. You’ve got this.",
+      "You can restart as many times today as you need.",
+      "Your softness is a superpower.",
+      "You deserve gentle mornings and peaceful nights.",
+      "You haven't missed your chance — it’s still unfolding.",
+      "You’re doing better than you think.",
+      "The world is better because you're in it.",
+      "You're growing even on the days you feel stuck.",
+      "You are not a burden. You’re a whole universe.",
+      "Proud of you for even opening this page today.",
+      "You’re allowed to move slowly — progress is progress.",
+      "You deserve good things. All of them."
     ];
 
     const today = new Date().getDate();
-    document.getElementById("dailyQuote").textContent = quotes[today % quotes.length];
+    document.getElementById("dailyQuote").textContent =
+      quotes[today % quotes.length];
+
+    /* 🌤 Weather + Date + Time for Taylor, TX */
+    const footer = document.getElementById("footerInfo");
+
+    async function updateFooter() {
+      try {
+        const lat = 30.5708;
+        const lon = -97.4097;
+
+        const weatherRes = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&temperature_unit=fahrenheit`
+        );
+        const weatherData = await weatherRes.json();
+        const temp = Math.round(weatherData.current.temperature_2m);
+
+        const now = new Date();
+        const dateStr = now.toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        });
+
+        const timeStr = now.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+        });
+
+        footer.innerHTML = `${dateStr} • ${timeStr} • ${temp}°F in Taylor, TX`;
+
+      } catch (err) {
+        footer.innerHTML = "Unable to load weather 🥺";
+      }
+    }
+
+    updateFooter();
+    setInterval(updateFooter, 30000);
   </script>
 
 </body>
