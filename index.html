@@ -12,10 +12,10 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Georgia, "Times New Roman", serif;
-  color: #ffd1e8;
+  color: #ffd6d6;
   background:
-    radial-gradient(circle at top, #5a1234 0%, transparent 35%),
-    linear-gradient(180deg, #100710, #1b0715 45%, #070407);
+    radial-gradient(circle at top, rgba(160, 0, 35, .45), transparent 35%),
+    linear-gradient(180deg, #050000, #150006 45%, #050000);
   overflow-x: hidden;
 }
 
@@ -23,244 +23,184 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle, #ff8bd0 1px, transparent 2px),
-    radial-gradient(circle, #fff 1px, transparent 2px);
-  background-size: 90px 90px, 140px 140px;
-  animation: sparkle 8s linear infinite;
-  opacity: .45;
   pointer-events: none;
+  background-image:
+    radial-gradient(#ff003c 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-size: 90px 90px, 150px 150px;
+  animation: sparkle 10s linear infinite;
+  opacity: .35;
 }
 
 @keyframes sparkle {
   from { background-position: 0 0, 0 0; }
-  to { background-position: 90px 90px, -140px 140px; }
+  to { background-position: 90px 90px, -150px 150px; }
 }
 
 .page {
-  max-width: 1100px;
+  min-height: 100vh;
+  max-width: 900px;
   margin: auto;
-  padding: 25px;
+  padding: 55px 22px;
+  text-align: center;
   position: relative;
   z-index: 1;
 }
 
-.title {
+h1 {
+  margin: 0 0 25px;
   font-size: 6rem;
-  text-align: center;
-  margin: 20px 0 10px;
-  color: #ff8ccc;
-  text-shadow: 0 0 12px #ff4caf, 0 0 30px #ff1493;
-}
-
-.search {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  color: #ff1f4f;
+  text-shadow:
+    0 0 10px #ff003c,
+    0 0 30px #7b001c,
+    3px 3px 0 #000;
+  letter-spacing: 4px;
 }
 
 .search input {
-  width: min(650px, 90%);
-  padding: 17px 28px;
+  width: min(650px, 92%);
+  padding: 16px 24px;
   border-radius: 40px;
-  border: 2px solid #ff7ac8;
-  background: #120812;
-  color: #ffd4ea;
-  font-size: 1.2rem;
-  box-shadow: 0 0 25px #ff4caf;
+  border: 1px solid #8b001f;
+  background: rgba(5, 0, 0, .75);
+  color: #ffd6d6;
+  font-size: 1.1rem;
+  outline: none;
+  box-shadow: 0 0 18px rgba(255, 0, 60, .55);
 }
 
-.photos {
+.links {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 25px;
+  gap: 16px;
+  margin: 35px 0;
 }
 
-.photo {
-  height: 170px;
-  border: 3px solid #e8a1c8;
-  background:
-    linear-gradient(135deg, rgba(255,120,190,.35), rgba(0,0,0,.75)),
-    repeating-linear-gradient(45deg, #24101f 0 8px, #130710 8px 16px);
-  box-shadow: 0 0 18px #ff5fba;
-  transform: rotate(var(--r));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
-
-.photo.griffith {
-  background:
-    linear-gradient(rgba(20,5,20,.2), rgba(20,5,20,.8)),
-    radial-gradient(circle at top, #eec8ff, #5a2445 35%, #090409 80%);
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin: 25px 0;
-}
-
-.btn {
+.links a {
+  color: #ffd6d6;
   text-decoration: none;
-  color: #ffd5ec;
-  font-size: 1.25rem;
-  text-align: center;
-  padding: 30px 10px;
-  border-radius: 18px;
-  border: 2px solid #ff7ac8;
+  padding: 22px 10px;
+  border-radius: 14px;
+  border: 1px solid #9c0025;
   background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 6px),
-    linear-gradient(135deg, #3a102c, #130713);
-  box-shadow: inset 0 0 15px rgba(255,255,255,.18), 0 0 22px #ff4caf;
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.06) 0px,
+      rgba(255,255,255,.06) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    linear-gradient(135deg, #2b000b, #090000);
+  box-shadow:
+    inset 0 0 12px rgba(255,255,255,.08),
+    0 0 20px rgba(255, 0, 60, .45);
+  font-size: 1.1rem;
 }
 
-.btn:hover {
-  animation: juggle .4s infinite;
-  filter: brightness(1.3);
+.links a:hover {
+  animation: jiggle .38s infinite;
+  box-shadow: 0 0 28px rgba(255, 0, 60, .9);
+  color: white;
 }
 
-@keyframes juggle {
-  0% { transform: rotate(0) scale(1.04); }
-  25% { transform: rotate(2deg) translateY(-3px); }
+@keyframes jiggle {
+  0% { transform: rotate(0deg) scale(1.04); }
+  25% { transform: rotate(2deg) translateY(-2px); }
   50% { transform: rotate(-2deg) translateY(2px); }
-  75% { transform: rotate(2deg) translateY(-2px); }
-  100% { transform: rotate(0) scale(1.04); }
+  75% { transform: rotate(1deg) translateY(-1px); }
+  100% { transform: rotate(0deg) scale(1.04); }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.card {
-  min-height: 230px;
-  padding: 24px;
-  border-radius: 20px;
-  border: 2px solid #ff7ac8;
-  background: rgba(10, 4, 12, .86);
-  box-shadow: 0 0 25px #ff4caf;
+.info {
+  margin-top: 35px;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  text-shadow: 0 0 10px #ff003c;
 }
 
 .quote {
+  max-width: 700px;
+  margin: 40px auto 0;
   font-size: 1.45rem;
-  line-height: 1.5;
-  text-align: center;
+  line-height: 1.6;
+  color: #ffb8b8;
+  text-shadow:
+    0 0 8px #ff003c,
+    0 0 20px #4d000f;
 }
 
-.books {
-  line-height: 1.8;
-  font-size: 1.05rem;
-}
+@media (max-width: 750px) {
+  h1 { font-size: 4.5rem; }
 
-.cat {
-  font-size: 4rem;
-  text-align: center;
-}
-
-@media (max-width: 800px) {
-  .photos, .buttons, .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .title {
-    font-size: 4rem;
+  .links {
+    grid-template-columns: 1fr 1fr;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="page">
+<main class="page">
 
-  <h1 class="title">AR♥</h1>
+  <h1>AR♥</h1>
 
   <form class="search" action="https://www.google.com/search" method="GET">
     <input name="q" placeholder="Search Google..." />
   </form>
 
-  <section class="photos">
-    <div class="photo griffith" style="--r:-4deg;">♕</div>
-    <div class="photo" style="--r:3deg;">♡</div>
-    <div class="photo" style="--r:-2deg;">☾</div>
-    <div class="photo" style="--r:4deg;">✧</div>
+  <section class="links">
+    <a href="https://austincc.blackboard.com/" target="_blank">Blackboard</a>
+    <a href="https://selfservice.austincc.edu/Student/" target="_blank">MyACC</a>
+    <a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
+    <a href="https://docs.google.com/" target="_blank">Google Docs</a>
   </section>
 
-  <section class="buttons">
-    <a class="btn" href="https://austincc.blackboard.com/" target="_blank">Blackboard</a>
-    <a class="btn" href="https://selfservice.austincc.edu/Student/" target="_blank">MyACC</a>
-    <a class="btn" href="https://chatgpt.com/" target="_blank">ChatGPT</a>
-    <a class="btn" href="https://docs.google.com/" target="_blank">Google Docs</a>
+  <section class="info">
+    <div id="time"></div>
+    <div id="date"></div>
+    <div>Taylor, TX</div>
+    <div id="weather"></div>
   </section>
 
-  <section class="grid">
-    <div class="card">
-      <h2 id="time">Loading...</h2>
-      <p id="date"></p>
-      <p>Taylor, Texas</p>
-      <p id="weather">Loading weather...</p>
-    </div>
-
-    <div class="card quote">
-      “Gu Mang was not his stain, but the light in his heart that had never gone out.”
-    </div>
-
-    <div class="card books">
-      <strong>Book stack</strong><br>
-      The Remnants of Filth<br>
-      The Turning<br>
-      Painter of the Night<br>
-      Green Light<br>
-      Heaven Official’s Blessing<br>
-      The Grandmaster of Demonic Cultivation<br>
-      BJ Alex
-    </div>
-
-    <div class="card cat">
-      🐈‍⬛<br>
-      <span style="font-size:1rem;">gothic sakura dream space</span>
-    </div>
-
-    <div class="card">
-      <h2>✦ Sakura Noir ✦</h2>
-      <p>pink gothic 90s anime homepage</p>
-      <p>lace • roses • moonlight • sparkles</p>
-    </div>
-
-    <div class="card">
-      <h2>♡</h2>
-      <p>Tonight belongs to you and your dreams.</p>
-    </div>
+  <section class="quote">
+    “Gu Mang was not his stain, but the light in his heart that had never gone out.”
   </section>
 
-</div>
+</main>
 
 <script>
 function updateTime() {
   const now = new Date();
+
   document.getElementById("time").textContent =
-    now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+    now.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    });
 
   document.getElementById("date").textContent =
-    now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+    now.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
 }
 
 updateTime();
 setInterval(updateTime, 1000);
 
 fetch("https://api.open-meteo.com/v1/forecast?latitude=30.5708&longitude=-97.4094&current=temperature_2m&temperature_unit=fahrenheit")
-.then(r => r.json())
-.then(data => {
-  document.getElementById("weather").textContent =
-    Math.round(data.current.temperature_2m) + "°F";
-})
-.catch(() => {
-  document.getElementById("weather").textContent = "Weather unavailable";
-});
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("weather").textContent =
+      Math.round(data.current.temperature_2m) + "°F";
+  })
+  .catch(() => {
+    document.getElementById("weather").textContent = "";
+  });
 </script>
 
 </body>
