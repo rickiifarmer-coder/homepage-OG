@@ -2,342 +2,251 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AR ♥</title>
-
-  <!-- Pretty cursive + soft modern font -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Nunito:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AR♥ Homepage</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      font-family: "Nunito", sans-serif;
-      color: #f7f3ea;
-      background: linear-gradient(135deg, #101b16 0%, #203328 45%, #3b2a20 100%);
-      position: relative;
-      overflow: hidden;
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: #f7b7d8;
+      background:
+        radial-gradient(circle at top, rgba(255, 105, 180, 0.25), transparent 35%),
+        linear-gradient(rgba(15, 5, 15, 0.82), rgba(15, 5, 15, 0.9)),
+        url("https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      overflow-x: hidden;
     }
 
-    /* 🌿 soft plant / leafy blobs in background */
-    body::before {
-      content: "";
+    .sparkles {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background:
-        radial-gradient(circle at top left, rgba(162, 192, 145, 0.38) 0, transparent 55%),
-        radial-gradient(circle at bottom right, rgba(190, 163, 132, 0.38) 0, transparent 55%),
-        radial-gradient(ellipse at top right, rgba(110, 140, 112, 0.3) 0, transparent 60%);
-      mix-blend-mode: soft-light;
-      opacity: 0.9;
-      z-index: -1;
+      background-image:
+        radial-gradient(#ff9bd2 1px, transparent 1px),
+        radial-gradient(#ffffff 1px, transparent 1px),
+        radial-gradient(#ff5fb8 1.5px, transparent 1.5px);
+      background-size: 80px 80px, 120px 120px, 160px 160px;
+      animation: sparkleMove 6s linear infinite;
+      opacity: 0.65;
+      z-index: 1;
     }
 
-    .shell {
-      width: min(780px, 100%);
-      padding: 40px 32px 30px;
-      border-radius: 26px;
-      background: rgba(20, 26, 21, 0.9);
-      box-shadow:
-        0 22px 46px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(143, 118, 90, 0.5);
-      border: 1px solid rgba(175, 146, 116, 0.7);
-      backdrop-filter: blur(14px);
+    @keyframes sparkleMove {
+      from { background-position: 0 0, 0 0, 0 0; }
+      to { background-position: 80px 80px, -120px 120px, 160px -160px; }
     }
 
-    /* ✨ BIG CURSIVE TITLE ✨ */
-    .brand-main {
-      font-family: "Dancing Script", cursive;
-      font-size: 68px;
+    .page {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: auto;
+      padding: 35px 20px;
       text-align: center;
-      margin: 0 0 8px 0;
-      letter-spacing: 0.03em;
-      color: #f4e2cf;
     }
 
-    .brand-sub {
-      text-align: center;
-      font-size: 16px;
-      opacity: 0.8;
-      margin-bottom: 26px;
-      color: #e1d4c4;
+    h1 {
+      font-size: 6rem;
+      margin: 20px 0;
+      color: #ff8ccf;
+      text-shadow:
+        0 0 10px #ff4fac,
+        0 0 25px #ff7ac6,
+        3px 3px 0 #2b0619;
+      letter-spacing: 4px;
     }
 
-    /* 🔎 Search bar */
-    .search-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 22px;
+    .search-box {
+      margin: 20px auto 35px;
+      max-width: 600px;
     }
 
-    .search-form {
-      display: flex;
-      width: min(520px, 100%);
-      background: rgba(18, 24, 20, 0.9);
-      border-radius: 999px;
-      padding: 4px;
-      border: 1px solid rgba(189, 166, 139, 0.8);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .search-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      padding: 10px 16px;
-      font-size: 15px;
-      color: #f6ede0;
+    .search-box input {
+      width: 80%;
+      padding: 18px 25px;
+      border-radius: 40px;
+      border: 2px solid #ff80c0;
+      background: rgba(15, 5, 15, 0.85);
+      color: #ffd3e8;
+      font-size: 1.2rem;
+      box-shadow: 0 0 20px #ff5fb8;
       outline: none;
     }
 
-    .search-input::placeholder {
-      color: rgba(244, 227, 205, 0.7);
-    }
-
-    .search-button {
-      border: none;
-      border-radius: 999px;
-      padding: 8px 18px;
-      background: #c99b6f;
-      color: #26160f;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .search-button:hover {
-      background: #ddb286;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
-    }
-
-    /* ✨ DAILY QUOTE AREA – BIGGER & CUTER */
-    .quote {
-      margin-bottom: 24px;
-      font-style: italic;
-      font-size: 22px;
-      line-height: 1.5;
-      color: #f0e0d0;
-      text-align: center;
-      min-height: 48px;
-    }
-
-    .links-grid {
+    .buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 22px;
+      margin: 30px 0;
     }
 
-    /* Link Cards */
-    .link-card {
+    .button {
+      padding: 30px 15px;
       text-decoration: none;
-      background: rgba(39, 33, 27, 0.95);
+      color: #ffd2e8;
+      font-size: 1.3rem;
       border-radius: 20px;
-      padding: 16px 18px;
-      border: 1px solid rgba(194, 163, 131, 0.9);
-      color: #f7e8d7;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      border: 2px solid #ff79bd;
+      background:
+        linear-gradient(45deg, rgba(255, 134, 196, 0.35), rgba(33, 8, 25, 0.9)),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.05) 0px,
+          rgba(255,255,255,0.05) 2px,
+          transparent 2px,
+          transparent 5px
+        );
+      box-shadow:
+        inset 0 0 12px rgba(255,255,255,0.15),
+        0 0 20px rgba(255, 82, 174, 0.7);
+      transition: 0.25s;
     }
 
-    .link-card.main {
-      background: rgba(40, 56, 42, 0.97);
-      border-color: rgba(164, 192, 157, 0.95);
+    .button:hover {
+      animation: juggle 0.45s infinite;
+      box-shadow: 0 0 35px #ff5fb8;
+      filter: brightness(1.25);
     }
 
-    /* 🌸 WIGGLE ANIMATION */
-    @keyframes wiggle {
-      0% { transform: rotate(0deg); }
-      15% { transform: rotate(2deg); }
-      30% { transform: rotate(-2deg); }
-      45% { transform: rotate(1.5deg); }
-      60% { transform: rotate(-1.5deg); }
-      100% { transform: rotate(0deg); }
+    @keyframes juggle {
+      0% { transform: rotate(0deg) scale(1.04); }
+      25% { transform: rotate(2deg) translateY(-3px); }
+      50% { transform: rotate(-2deg) translateY(2px); }
+      75% { transform: rotate(1deg) translateY(-2px); }
+      100% { transform: rotate(0deg) scale(1.04); }
     }
 
-    .link-card:hover {
-      animation: wiggle 0.45s ease;
-      background: rgba(60, 48, 39, 0.98);
-      border-color: rgba(218, 185, 150, 1);
-      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
     }
 
-    .link-card.main:hover {
-      background: rgba(54, 76, 57, 0.98);
+    .card {
+      border: 2px solid #ff79bd;
+      border-radius: 22px;
+      padding: 25px;
+      background: rgba(12, 4, 14, 0.82);
+      box-shadow: 0 0 25px rgba(255, 83, 174, 0.55);
     }
 
-    .link-title {
-      font-family: "Dancing Script", cursive;
-      font-size: 28px;
-      color: #f8e9da;
+    .quote {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      color: #ffc1df;
+      text-shadow: 0 0 8px #ff5fb8;
     }
 
-    .link-sub {
-      font-size: 14px;
-      opacity: 0.88;
-      color: #f2dfcb;
+    .griffith {
+      min-height: 300px;
+      background:
+        linear-gradient(rgba(20, 5, 20, 0.25), rgba(20, 5, 20, 0.7)),
+        url("https://i.imgur.com/6Z7QZ7K.jpeg");
+      background-size: cover;
+      background-position: center;
     }
 
-    /* FOOTER with WEATHER + TIME */
-    .footer {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 14px;
+    .books {
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .cat {
+      font-size: 4rem;
+    }
+
+    .small {
+      font-size: 1rem;
       opacity: 0.9;
-      color: #f0ddca;
-    }
-
-    @media (max-width: 600px) {
-      .shell {
-        padding: 28px 20px 22px;
-      }
-      .brand-main {
-        font-size: 52px;
-      }
     }
   </style>
 </head>
 
 <body>
-  <div class="shell">
+  <div class="sparkles"></div>
 
-    <!-- 🌸 TITLE -->
-    <div class="brand-main">AR ♥</div>
-    <div class="brand-sub">your soft little study space ✧</div>
+  <main class="page">
+    <h1>AR♥</h1>
 
-    <!-- 🔎 GOOGLE SEARCH BAR -->
-    <div class="search-wrap">
-      <form
-        class="search-form"
-        action="https://www.google.com/search"
-        method="GET"
-        target="_blank"
-      >
-        <input
-          class="search-input"
-          type="text"
-          name="q"
-          placeholder="Search the universe (or just your homework)…"
-        />
-        <button class="search-button" type="submit">search</button>
-      </form>
-    </div>
+    <form class="search-box" action="https://www.google.com/search" method="GET">
+      <input type="text" name="q" placeholder="Search Google..." />
+    </form>
 
-    <!-- DAILY QUOTE AREA -->
-    <div id="dailyQuote" class="quote"></div>
+    <section class="buttons">
+      <a class="button" href="https://austincc.blackboard.com/" target="_blank">Blackboard</a>
+      <a class="button" href="https://myacc.austincc.edu/" target="_blank">MyACC</a>
+      <a class="button" href="https://chatgpt.com/" target="_blank">ChatGPT</a>
+      <a class="button" href="https://docs.google.com/" target="_blank">Google Docs</a>
+    </section>
 
-    <!-- BUTTON GRID -->
-    <div class="links-grid">
+    <section class="content">
+      <div class="card">
+        <h2 id="time">Loading time...</h2>
+        <p id="date"></p>
+        <p>Taylor, Texas</p>
+        <p id="weather">Loading weather...</p>
+      </div>
 
-      <a class="link-card main" href="https://acconline.austincc.edu/" target="_blank" rel="noopener noreferrer">
-        <div class="link-title">Blackboard</div>
-        <div class="link-sub">All your classes & assignments in one place.</div>
-      </a>
+      <div class="card quote">
+        “Gu Mang was not his stain, but the light in his heart that had never gone out.”
+      </div>
 
-      <a class="link-card" href="https://web7.austincc.edu/myacc/" target="_blank" rel="noopener noreferrer">
-        <div class="link-title">MyACC</div>
-        <div class="link-sub">Your student portal & schedule.</div>
-      </a>
+      <div class="card griffith"></div>
 
-      <a class="link-card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-        <div class="link-title">Study Buddy</div>
-        <div class="link-sub">Ask questions, get help, keep moving.</div>
-      </a>
+      <div class="card books">
+        <strong>Book stack</strong><br>
+        Remnants of Filth<br>
+        The Turning<br>
+        Painter of the Night<br>
+        Green Light<br>
+        Heaven Official’s Blessing<br>
+        The Grandmaster of Demonic Cultivation
+      </div>
 
-      <a class="link-card" href="https://drive.google.com" target="_blank" rel="noopener noreferrer">
-        <div class="link-title">Notes & Docs</div>
-        <div class="link-sub">Your files, calm and organized.</div>
-      </a>
+      <div class="card">
+        <div class="cat">🐈‍⬛</div>
+        gothic sakura dream space
+      </div>
+    </section>
+  </main>
 
-    </div>
-
-    <div class="footer" id="footerInfo">
-      loading weather & time…
-    </div>
-
-  </div>
-
-  <!-- ✨ QUOTES + WEATHER + TIME SCRIPT -->
   <script>
-    /* 🌸 Cute, warm, silly, happy quotes */
-    const quotes = [
-      "You are allowed to take up space, even on the internet.",
-      "Somewhere in the future, you’re so glad you didn’t give up today.",
-      "You’ve already survived all your hardest days so far.",
-      "Your pace is perfect for the life you're living.",
-      "Rest is productive, too.",
-      "You’re not behind. You’re on your own beautiful timeline.",
-      "You have done hard things before. You can do this again.",
-      "It’s okay if today is a little messy — you’re still magic.",
-      "Drink water, breathe, keep going. You’ve got this.",
-      "You can restart as many times today as you need.",
-      "Your softness is a superpower.",
-      "You deserve gentle mornings and peaceful nights.",
-      "You haven't missed your chance — it’s still unfolding.",
-      "You’re doing better than you think.",
-      "The world is better because you're in it.",
-      "You're growing even on the days you feel stuck.",
-      "You are not a burden. You’re a whole universe.",
-      "Proud of you for even opening this page today.",
-      "You’re allowed to move slowly — progress is progress.",
-      "You deserve good things. All of them."
-    ];
+    function updateTime() {
+      const now = new Date();
 
-    const today = new Date().getDate();
-    document.getElementById("dailyQuote").textContent =
-      quotes[today % quotes.length];
-
-    /* 🌤 Weather + Date + Time for Taylor, TX */
-    const footer = document.getElementById("footerInfo");
-
-    async function updateFooter() {
-      try {
-        const lat = 30.5708;
-        const lon = -97.4097;
-
-        const weatherRes = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&temperature_unit=fahrenheit`
-        );
-        const weatherData = await weatherRes.json();
-        const temp = Math.round(weatherData.current.temperature_2m);
-
-        const now = new Date();
-        const dateStr = now.toLocaleDateString("en-US", {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-        });
-
-        const timeStr = now.toLocaleTimeString("en-US", {
+      document.getElementById("time").textContent =
+        now.toLocaleTimeString("en-US", {
           hour: "numeric",
           minute: "2-digit",
+          hour12: true
         });
 
-        footer.innerHTML = `${dateStr} • ${timeStr} • ${temp}°F in Taylor, TX`;
-
-      } catch (err) {
-        footer.innerHTML = "Unable to load weather 🥺";
-      }
+      document.getElementById("date").textContent =
+        now.toLocaleDateString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        });
     }
 
-    updateFooter();
-    setInterval(updateFooter, 30000);
-  </script>
+    updateTime();
+    setInterval(updateTime, 1000);
 
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=30.5708&longitude=-97.4094&current=temperature_2m&temperature_unit=fahrenheit")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("weather").textContent =
+          Math.round(data.current.temperature_2m) + "°F";
+      })
+      .catch(() => {
+        document.getElementById("weather").textContent = "Weather unavailable";
+      });
+  </script>
 </body>
 </html>
