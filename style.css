@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Playfair+Display:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:wght@500;700&display=swap');
 
 * {
   margin: 0;
@@ -8,72 +8,36 @@
 
 body {
   min-height: 100vh;
-  font-family: 'Playfair Display', serif;
-  color: #ffd6d6;
   background:
-    radial-gradient(circle at top, rgba(120, 0, 20, .5), transparent 30%),
-    radial-gradient(circle at bottom, rgba(70, 0, 10, .45), transparent 35%),
-    linear-gradient(180deg, #020000, #100003, #020000);
+    radial-gradient(circle at top, rgba(80, 0, 15, .32), transparent 32%),
+    linear-gradient(180deg, #030303, #090102 45%, #020202);
+  color: #f7f0f0;
+  font-family: 'Playfair Display', serif;
   overflow-x: hidden;
 }
 
-/* moving gothic background */
 body::before {
-  content: "✦ 🦇 ✧ 🥀 ✦ 🖤 ✧ 🥀 ✦ 🦇 ✧";
+  content: "";
   position: fixed;
-  top: -80px;
-  left: 0;
-  width: 100%;
-  font-size: 26px;
-  letter-spacing: 45px;
-  line-height: 90px;
-  opacity: .23;
-  animation: fall 13s linear infinite;
+  inset: 0;
   pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
+    radial-gradient(rgba(120,0,20,.22) 1px, transparent 1px);
+  background-size: 160px 160px, 260px 260px;
+  animation: dust 22s linear infinite;
+  opacity: .35;
 }
 
-body::after {
-  content: "☾";
-  position: fixed;
-  top: 35px;
-  left: 45px;
-  font-size: 85px;
-  color: #8b001d;
-  opacity: .5;
-  pointer-events: none;
-}
-
-@keyframes fall {
-  from { transform: translateY(-100px); }
-  to { transform: translateY(115vh); }
-}
-
-.background-symbols::before {
-  content: "🕯️";
-  position: fixed;
-  bottom: 35px;
-  left: 45px;
-  font-size: 55px;
-  animation: flicker 1.6s infinite;
-}
-
-.background-symbols::after {
-  content: "🕯️";
-  position: fixed;
-  bottom: 35px;
-  right: 45px;
-  font-size: 55px;
-  animation: flicker 1.6s infinite;
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: .45; transform: scale(1); }
-  50% { opacity: .85; transform: scale(1.08); }
+@keyframes dust {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 160px 160px, -260px 260px; }
 }
 
 .page {
-  width: min(900px, 90%);
+  width: min(950px, 90%);
   margin: auto;
+  min-height: 100vh;
   padding-top: 70px;
   text-align: center;
   position: relative;
@@ -82,94 +46,113 @@ body::after {
 
 h1 {
   font-family: 'Cinzel', serif;
-  font-size: 6.8rem;
-  color: #d6002f;
-  letter-spacing: 6px;
+  font-size: 7rem;
+  color: #b60024;
+  letter-spacing: 8px;
   text-shadow: 3px 3px 0 #000;
-  margin-bottom: 35px;
+  margin-bottom: 45px;
   animation: heartbeat 2.2s infinite;
 }
 
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.045); }
 }
 
 .search {
-  margin-bottom: 35px;
+  margin-bottom: 38px;
 }
 
 .search input {
   width: 100%;
-  padding: 18px 25px;
-  border-radius: 40px;
-  border: 1px solid #5f0013;
-  background: rgba(5, 0, 0, .86);
-  color: #ffd6d6;
-  font-size: 1rem;
+  padding: 18px 26px;
+  border-radius: 2px;
+  border: 1px solid #4a000d;
+  background: rgba(4, 4, 4, .88);
+  color: white;
   font-family: inherit;
+  font-size: 1rem;
   outline: none;
-  box-shadow: inset 0 0 18px rgba(255,255,255,.05);
+  box-shadow: none;
 }
 
 .links {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-bottom: 45px;
+  gap: 22px;
+  margin-bottom: 95px;
 }
 
 .links a {
   text-decoration: none;
-  color: #ffd6d6;
-  padding: 20px;
-  border-radius: 14px;
-  border: 1px solid #650014;
+  color: #f7f0f0;
+  padding: 34px 16px;
+  border-radius: 4px;
+  border: 1px solid #5b0010;
   background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 2px, transparent 2px 7px),
-    linear-gradient(135deg, #290008, #070000);
+    linear-gradient(145deg, #191919, #050505);
   box-shadow:
-    inset 0 0 16px rgba(255,255,255,.06),
-    0 8px 20px rgba(0,0,0,.75);
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 12px 24px rgba(0,0,0,.7);
+  font-size: 1.25rem;
+  letter-spacing: .5px;
+  transition: .2s;
 }
 
 .links a:hover {
   animation: jiggle .35s infinite;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.075) 0 2px, transparent 2px 7px),
-    linear-gradient(135deg, #4a0010, #120003);
+  background: linear-gradient(145deg, #240006, #080808);
+  border-color: #8a001b;
 }
 
 @keyframes jiggle {
-  0% { transform: rotate(0deg) scale(1.04); }
-  25% { transform: rotate(2deg) translateY(-2px); }
-  50% { transform: rotate(-2deg) translateY(2px); }
+  0% { transform: rotate(0deg) scale(1.03); }
+  25% { transform: rotate(1.5deg) translateY(-2px); }
+  50% { transform: rotate(-1.5deg) translateY(2px); }
   75% { transform: rotate(1deg) translateY(-1px); }
-  100% { transform: rotate(0deg) scale(1.04); }
+  100% { transform: rotate(0deg) scale(1.03); }
 }
 
 .info {
-  font-size: 1.45rem;
-  line-height: 1.8;
-  margin-bottom: 58px;
-  text-shadow: 2px 2px 0 #000;
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .8rem;
+  line-height: 1.5;
+  color: rgba(247,240,240,.72);
+  text-shadow: none;
 }
 
 .quote {
-  max-width: 720px;
+  max-width: 760px;
   margin: auto;
   font-size: 1.55rem;
-  line-height: 1.7;
+  line-height: 1.65;
   font-style: italic;
-  color: #ffc4c4;
-  text-shadow: 2px 2px 0 #000;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.background-symbols {
+  display: none;
 }
 
 @media (max-width: 800px) {
-  .links {
-    grid-template-columns: 1fr 1fr;
-  }
-
   h1 {
     font-size: 4.5rem;
   }
+
+  .links {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 70px;
+  }
+
+  .links a {
+    padding: 26px 10px;
+  }
+
+  .quote {
+    font-size: 1.25rem;
+  }
+}
