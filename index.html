@@ -1,207 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AR♥</title>
-
-<style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Georgia, "Times New Roman", serif;
-  color: #ffd6d6;
-  background:
-    radial-gradient(circle at top, rgba(160, 0, 35, .45), transparent 35%),
-    linear-gradient(180deg, #050000, #150006 45%, #050000);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(#ff003c 1px, transparent 1px),
-    radial-gradient(#ffffff 1px, transparent 1px);
-  background-size: 90px 90px, 150px 150px;
-  animation: sparkle 10s linear infinite;
-  opacity: .35;
-}
-
-@keyframes sparkle {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 90px 90px, -150px 150px; }
-}
-
-.page {
-  min-height: 100vh;
-  max-width: 900px;
-  margin: auto;
-  padding: 55px 22px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-h1 {
-  margin: 0 0 25px;
-  font-size: 6rem;
-  color: #ff1f4f;
-  text-shadow:
-    0 0 10px #ff003c,
-    0 0 30px #7b001c,
-    3px 3px 0 #000;
-  letter-spacing: 4px;
-}
-
-.search input {
-  width: min(650px, 92%);
-  padding: 16px 24px;
-  border-radius: 40px;
-  border: 1px solid #8b001f;
-  background: rgba(5, 0, 0, .75);
-  color: #ffd6d6;
-  font-size: 1.1rem;
-  outline: none;
-  box-shadow: 0 0 18px rgba(255, 0, 60, .55);
-}
-
-.links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 35px 0;
-}
-
-.links a {
-  color: #ffd6d6;
-  text-decoration: none;
-  padding: 22px 10px;
-  border-radius: 14px;
-  border: 1px solid #9c0025;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,.06) 0px,
-      rgba(255,255,255,.06) 2px,
-      transparent 2px,
-      transparent 6px
-    ),
-    linear-gradient(135deg, #2b000b, #090000);
-  box-shadow:
-    inset 0 0 12px rgba(255,255,255,.08),
-    0 0 20px rgba(255, 0, 60, .45);
-  font-size: 1.1rem;
-}
-
-.links a:hover {
-  animation: jiggle .38s infinite;
-  box-shadow: 0 0 28px rgba(255, 0, 60, .9);
-  color: white;
-}
-
-@keyframes jiggle {
-  0% { transform: rotate(0deg) scale(1.04); }
-  25% { transform: rotate(2deg) translateY(-2px); }
-  50% { transform: rotate(-2deg) translateY(2px); }
-  75% { transform: rotate(1deg) translateY(-1px); }
-  100% { transform: rotate(0deg) scale(1.04); }
-}
-
-.info {
-  margin-top: 35px;
-  font-size: 1.5rem;
-  line-height: 1.7;
-  text-shadow: 0 0 10px #ff003c;
-}
-
-.quote {
-  max-width: 700px;
-  margin: 40px auto 0;
-  font-size: 1.45rem;
-  line-height: 1.6;
-  color: #ffb8b8;
-  text-shadow:
-    0 0 8px #ff003c,
-    0 0 20px #4d000f;
-}
-
-@media (max-width: 750px) {
-  h1 { font-size: 4.5rem; }
-
-  .links {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AR♥</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-<main class="page">
+  <div class="background-symbols"></div>
 
-  <h1>AR♥</h1>
+  <main class="page">
+    <h1>AR♥</h1>
 
-  <form class="search" action="https://www.google.com/search" method="GET">
-    <input name="q" placeholder="Search Google..." />
-  </form>
+    <form class="search" action="https://www.google.com/search" method="GET">
+      <input name="q" type="text" placeholder="Search Google..." />
+    </form>
 
-  <section class="links">
-    <a href="https://austincc.blackboard.com/" target="_blank">Blackboard</a>
-    <a href="https://selfservice.austincc.edu/Student/" target="_blank">MyACC</a>
-    <a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
-    <a href="https://docs.google.com/" target="_blank">Google Docs</a>
-  </section>
+    <nav class="links">
+      <a href="https://austincc.blackboard.com/" target="_blank">Blackboard</a>
+      <a href="https://selfservice.austincc.edu/Student/" target="_blank">MyACC</a>
+      <a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
+      <a href="https://docs.google.com/" target="_blank">Google Docs</a>
+    </nav>
 
-  <section class="info">
-    <div id="time"></div>
-    <div id="date"></div>
-    <div>Taylor, TX</div>
-    <div id="weather"></div>
-  </section>
+    <section class="info">
+      <div id="time"></div>
+      <div id="date"></div>
+      <div>Taylor, TX</div>
+      <div id="weather"></div>
+    </section>
 
-  <section class="quote">
-    “Gu Mang was not his stain, but the light in his heart that had never gone out.”
-  </section>
+    <section class="quote">
+      “Gu Mang was not his stain, but the light in his heart that had never gone out.”
+    </section>
+  </main>
 
-</main>
-
-<script>
-function updateTime() {
-  const now = new Date();
-
-  document.getElementById("time").textContent =
-    now.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true
-    });
-
-  document.getElementById("date").textContent =
-    now.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    });
-}
-
-updateTime();
-setInterval(updateTime, 1000);
-
-fetch("https://api.open-meteo.com/v1/forecast?latitude=30.5708&longitude=-97.4094&current=temperature_2m&temperature_unit=fahrenheit")
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById("weather").textContent =
-      Math.round(data.current.temperature_2m) + "°F";
-  })
-  .catch(() => {
-    document.getElementById("weather").textContent = "";
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
