@@ -1,414 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Playfair+Display:wght@500;700&display=swap');
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-scroll-behavior:smooth;
+body {
+  min-height: 100vh;
+  font-family: 'Playfair Display', serif;
+  color: #ffd6d6;
+  background:
+    radial-gradient(circle at top, rgba(120, 0, 20, .5), transparent 30%),
+    radial-gradient(circle at bottom, rgba(70, 0, 10, .45), transparent 35%),
+    linear-gradient(180deg, #020000, #100003, #020000);
+  overflow-x: hidden;
 }
 
-body{
-
-background:
-radial-gradient(circle at top,#42000f 0%,transparent 35%),
-linear-gradient(#070707,#120204,#050505);
-
-color:#f7d9df;
-
-font-family:'Playfair Display',serif;
-
-overflow-x:hidden;
-
-min-height:100vh;
-
-}
-
-
-/* ---------------- Moving background ---------------- */
-
-.background-symbols{
-
-position:fixed;
-inset:0;
-
-pointer-events:none;
-
-opacity:.18;
-
-background-image:
-
-radial-gradient(#ffffff 1px,transparent 1px),
-
-radial-gradient(#8d001d 1.5px,transparent 1.5px);
-
-background-size:
-
-140px 140px,
-220px 220px;
-
-animation:sparkles 14s linear infinite;
-
-}
-
-@keyframes sparkles{
-
-from{
-
-background-position:
-0 0,
-0 0;
-
-}
-
-to{
-
-background-position:
-140px 140px,
--220px 220px;
-
-}
-
-}
-
-
-/* ---------------- Main ---------------- */
-
-.page{
-
-width:min(900px,90%);
-
-margin:auto;
-
-padding-top:70px;
-
-text-align:center;
-
-}
-
-
-/* ---------------- AR ---------------- */
-
-h1{
-
-font-family:'Cinzel',serif;
-
-font-size:6rem;
-
-font-weight:700;
-
-letter-spacing:5px;
-
-color:#d5002f;
-
-text-shadow:
-
-2px 2px 0 black,
-
-0 0 12px rgba(255,0,60,.35);
-
-margin-bottom:35px;
-
-}
-
-
-/* ---------------- Search ---------------- */
-
-.search{
-
-margin-bottom:35px;
-
-}
-
-.search input{
-
-width:100%;
-
-padding:18px 25px;
-
-border-radius:40px;
-
-border:1px solid #650014;
-
-outline:none;
-
-background:
-
-linear-gradient(#130204,#080102);
-
-color:white;
-
-font-size:1rem;
-
-font-family:inherit;
-
-transition:.25s;
-
-}
-
-.search input:focus{
-
-border-color:#b40029;
-
-}
-
-
-/* ---------------- Buttons ---------------- */
-
-.links{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:18px;
-
-margin-bottom:45px;
-
-}
-
-.links a{
-
-text-decoration:none;
-
-color:#f6d9df;
-
-padding:20px;
-
-border-radius:15px;
-
-background:
-
-linear-gradient(135deg,#2d020b,#130103);
-
-border:1px solid #670016;
-
-/* fabric texture */
-
-background-image:
-
-repeating-linear-gradient(
-45deg,
-rgba(255,255,255,.035),
-rgba(255,255,255,.035) 2px,
-transparent 2px,
-transparent 7px
-);
-
-box-shadow:
-
-0 8px 20px rgba(0,0,0,.45),
-
-inset 0 0 18px rgba(255,255,255,.04);
-
-transition:.22s;
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-.links a::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,.08),
-transparent
-);
-
-transform:translateX(-130%);
-
-transition:.5s;
-
-}
-
-.links a:hover::before{
-
-transform:translateX(130%);
-
-}
-
-.links a:hover{
-
-animation:jiggle .35s infinite;
-
-border-color:#b3002c;
-
-}
-
-@keyframes jiggle{
-
-0%{
-
-transform:rotate(0deg);
-
-}
-
-25%{
-
-transform:rotate(2deg);
-
-}
-
-50%{
-
-transform:rotate(-2deg);
-
-}
-
-75%{
-
-transform:rotate(1deg);
-
-}
-
-100%{
-
-transform:rotate(0deg);
-
-}
-
-}
-
-
-/* ---------------- Time ---------------- */
-
-.info{
-
-font-size:1.5rem;
-
-line-height:1.8;
-
-margin-bottom:60px;
-
-text-shadow:
-
-0 0 8px rgba(255,0,50,.25);
-
-}
-
-
-/* ---------------- Quote ---------------- */
-
-.quote{
-
-font-size:1.55rem;
-
-max-width:700px;
-
-margin:auto;
-
-line-height:1.7;
-
-font-style:italic;
-
-color:#f6c6d0;
-
-text-shadow:
-
-0 0 8px rgba(255,0,50,.15);
-
-}
-
-
-/* ---------------- Mobile ---------------- */
-
-@media(max-width:800px){
-
-.links{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-h1{
-
-font-size:4rem;
-
-}
-
-.info{
-
-font-size:1.2rem;
-
-}
-
-.quote{
-
-font-size:1.25rem;
-
-}
-
-}
-
-h1 {
-  animation: heartbeat 2.2s infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.04); }
-}
-
-.page::before {
-  content: "🌙";
-  position: fixed;
-  top: 40px;
-  left: 45px;
-  font-size: 4rem;
-  opacity: .45;
-}
-
-.page::after {
-  content: "🕯️        🦇        🖤        🦇        🕯️";
-  position: fixed;
-  bottom: 35px;
-  left: 0;
-  width: 100%;
-  font-size: 2rem;
-  opacity: .35;
-  animation: floaty 4s ease-in-out infinite;
-}
-
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-body::after {
-  content: "✦ 🩸 ✧ 🥀 ✦ 🖤 ✧ 🥀 ✦";
+/* moving gothic background */
+body::before {
+  content: "✦ 🦇 ✧ 🥀 ✦ 🖤 ✧ 🥀 ✦ 🦇 ✧";
   position: fixed;
   top: -80px;
   left: 0;
   width: 100%;
-  font-size: 1.4rem;
-  opacity: .25;
-  animation: fall 12s linear infinite;
+  font-size: 26px;
+  letter-spacing: 45px;
+  line-height: 90px;
+  opacity: .23;
+  animation: fall 13s linear infinite;
+  pointer-events: none;
+}
+
+body::after {
+  content: "☾";
+  position: fixed;
+  top: 35px;
+  left: 45px;
+  font-size: 85px;
+  color: #8b001d;
+  opacity: .5;
   pointer-events: none;
 }
 
 @keyframes fall {
   from { transform: translateY(-100px); }
-  to { transform: translateY(110vh); }
+  to { transform: translateY(115vh); }
 }
 
-.links a {
-  box-shadow: inset 0 0 12px rgba(255,255,255,.05), 0 8px 18px rgba(0,0,0,.7);
-  border: 1px solid #5c0012;
+.background-symbols::before {
+  content: "🕯️";
+  position: fixed;
+  bottom: 35px;
+  left: 45px;
+  font-size: 55px;
+  animation: flicker 1.6s infinite;
+}
+
+.background-symbols::after {
+  content: "🕯️";
+  position: fixed;
+  bottom: 35px;
+  right: 45px;
+  font-size: 55px;
+  animation: flicker 1.6s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: .45; transform: scale(1); }
+  50% { opacity: .85; transform: scale(1.08); }
+}
+
+.page {
+  width: min(900px, 90%);
+  margin: auto;
+  padding-top: 70px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 6.8rem;
+  color: #d6002f;
+  letter-spacing: 6px;
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 35px;
+  animation: heartbeat 2.2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.search {
+  margin-bottom: 35px;
 }
 
 .search input {
-  box-shadow: inset 0 0 15px rgba(255,255,255,.04);
+  width: 100%;
+  padding: 18px 25px;
+  border-radius: 40px;
+  border: 1px solid #5f0013;
+  background: rgba(5, 0, 0, .86);
+  color: #ffd6d6;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  box-shadow: inset 0 0 18px rgba(255,255,255,.05);
 }
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 45px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #ffd6d6;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #650014;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 2px, transparent 2px 7px),
+    linear-gradient(135deg, #290008, #070000);
+  box-shadow:
+    inset 0 0 16px rgba(255,255,255,.06),
+    0 8px 20px rgba(0,0,0,.75);
+}
+
+.links a:hover {
+  animation: jiggle .35s infinite;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.075) 0 2px, transparent 2px 7px),
+    linear-gradient(135deg, #4a0010, #120003);
+}
+
+@keyframes jiggle {
+  0% { transform: rotate(0deg) scale(1.04); }
+  25% { transform: rotate(2deg) translateY(-2px); }
+  50% { transform: rotate(-2deg) translateY(2px); }
+  75% { transform: rotate(1deg) translateY(-1px); }
+  100% { transform: rotate(0deg) scale(1.04); }
+}
+
+.info {
+  font-size: 1.45rem;
+  line-height: 1.8;
+  margin-bottom: 58px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.quote {
+  max-width: 720px;
+  margin: auto;
+  font-size: 1.55rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: #ffc4c4;
+  text-shadow: 2px 2px 0 #000;
+}
+
+@media (max-width: 800px) {
+  .links {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
