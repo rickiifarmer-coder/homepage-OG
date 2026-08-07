@@ -3,37 +3,844 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AR♥</title>
-  <link rel="stylesheet" href="style.css?v=10" />
+
+  <title>AR ♥</title>
+
+  <style>
+    /* =========================
+       COLOR PALETTE
+    ========================== */
+    :root {
+      --dark-green: #26352b;
+      --deep-green: #1e2b23;
+      --brown: #5d4638;
+      --dark-brown: #3f3028;
+      --soft-pink: #d9a39d;
+      --dusty-pink: #bd817b;
+      --cream: #f2e7d5;
+      --sage: #8f9b7d;
+      --muted-gold: #c8a77c;
+
+      --glass: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --shadow: rgba(20, 18, 15, 0.32);
+    }
+
+    /* =========================
+       RESET
+    ========================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--cream);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 50px 24px;
+
+      overflow-x: hidden;
+
+      /* TWO-TONE BACKGROUND */
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(143, 155, 125, 0.22),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 75%,
+          rgba(217, 163, 157, 0.25),
+          transparent 32%
+        ),
+        linear-gradient(
+          120deg,
+          var(--deep-green) 0%,
+          var(--dark-green) 48%,
+          var(--brown) 48.2%,
+          var(--dark-brown) 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    /* subtle glow blobs */
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 300px;
+      height: 300px;
+      background: rgba(217, 163, 157, 0.16);
+      top: -80px;
+      right: 8%;
+    }
+
+    body::after {
+      width: 350px;
+      height: 350px;
+      background: rgba(143, 155, 125, 0.15);
+      bottom: -120px;
+      left: 5%;
+    }
+
+    /* =========================
+       MAIN CONTAINER
+    ========================== */
+
+    .page {
+      width: min(100%, 1050px);
+      position: relative;
+      z-index: 1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(4.5rem, 10vw, 7.5rem);
+      font-weight: 500;
+      letter-spacing: -5px;
+      line-height: 1;
+
+      color: var(--soft-pink);
+
+      text-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.28),
+        0 0 20px rgba(217, 163, 157, 0.12);
+    }
+
+    .heart {
+      display: inline-block;
+      margin-left: 15px;
+      font-size: 0.65em;
+      color: var(--soft-pink);
+
+      animation: heartbeat 3s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      10% {
+        transform: scale(1.08);
+      }
+
+      18% {
+        transform: scale(1);
+      }
+
+      26% {
+        transform: scale(1.06);
+      }
+
+      36% {
+        transform: scale(1);
+      }
+    }
+
+    .quote {
+      max-width: 760px;
+      margin: 22px auto 0;
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-style: italic;
+      line-height: 1.65;
+
+      color: rgba(242, 231, 213, 0.92);
+    }
+
+    .quote::before,
+    .quote::after {
+      color: var(--muted-gold);
+      font-size: 1.25em;
+    }
+
+    .quote::before {
+      content: "✦ ";
+    }
+
+    .quote::after {
+      content: " ✦";
+    }
+
+    /* =========================
+       GOOGLE SEARCH
+    ========================== */
+
+    .search-container {
+      width: min(100%, 800px);
+      margin: 8px 0 42px;
+    }
+
+    .search-form {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+
+      padding: 8px 10px 8px 25px;
+
+      background: rgba(255, 255, 255, 0.11);
+
+      border: 1px solid var(--glass-border);
+
+      border-radius: 999px;
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      box-shadow:
+        0 14px 35px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .search-form:focus-within {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(217, 163, 157, 0.55);
+    }
+
+    .search-form input {
+      flex: 1;
+      width: 100%;
+
+      border: none;
+      outline: none;
+
+      background: transparent;
+
+      color: var(--cream);
+
+      font-size: 1.15rem;
+
+      padding: 15px 5px;
+    }
+
+    .search-form input::placeholder {
+      color: rgba(242, 231, 213, 0.7);
+      font-style: italic;
+    }
+
+    .search-button {
+      width: 58px;
+      height: 58px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(217, 163, 157, 0.22);
+
+      color: var(--cream);
+
+      font-size: 1.35rem;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .search-button:hover {
+      transform: scale(1.08);
+      background: rgba(217, 163, 157, 0.36);
+    }
+
+    .search-label {
+      margin-top: 12px;
+      text-align: center;
+
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      color: rgba(242, 231, 213, 0.55);
+    }
+
+    /* =========================
+       BUTTON GRID
+    ========================== */
+
+    .links {
+      width: 100%;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    .link-card {
+      grid-column: span 2;
+
+      min-height: 185px;
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      padding: 25px;
+
+      text-decoration: none;
+      text-align: center;
+
+      color: var(--cream);
+
+      border-radius: 32px;
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      background: var(--glass);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    /*
+       Center the final two cards
+       on the second row.
+    */
+
+    .link-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .link-card:nth-child(5) {
+      grid-column: 4 / span 2;
+    }
+
+    /* colored glass variations */
+
+    .acc {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(143, 155, 125, 0.25),
+          rgba(70, 83, 64, 0.18)
+        );
+    }
+
+    .blackboard {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(217, 163, 157, 0.25),
+          rgba(93, 70, 56, 0.2)
+        );
+    }
+
+    .study {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(105, 126, 95, 0.26),
+          rgba(48, 65, 53, 0.2)
+        );
+    }
+
+    .docs {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(218, 166, 155, 0.28),
+          rgba(111, 78, 67, 0.18)
+        );
+    }
+
+    .email {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(167, 150, 115, 0.25),
+          rgba(74, 83, 62, 0.18)
+        );
+    }
+
+    /* glow */
+
+    .link-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 170px;
+      height: 170px;
+
+      top: -90px;
+      right: -70px;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border-radius: 50%;
+
+      transition: transform 0.35s ease;
+    }
+
+    .link-card:hover::before {
+      transform: scale(1.4);
+    }
+
+    /* =========================
+       JIGGLE EFFECT
+    ========================== */
+
+    .link-card:hover {
+      background-color: rgba(255, 255, 255, 0.17);
+
+      border-color: rgba(255, 255, 255, 0.34);
+
+      box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+      animation: jiggle 0.42s ease-in-out;
+
+      transform: translateY(-5px);
+    }
+
+    .link-card.clicked {
+      animation: clickJiggle 0.28s ease-in-out;
+    }
+
+    @keyframes jiggle {
+      0% {
+        transform: translateY(-5px) rotate(0deg);
+      }
+
+      25% {
+        transform: translateY(-5px) rotate(-1.2deg);
+      }
+
+      50% {
+        transform: translateY(-5px) rotate(1.2deg);
+      }
+
+      75% {
+        transform: translateY(-5px) rotate(-0.7deg);
+      }
+
+      100% {
+        transform: translateY(-5px) rotate(0deg);
+      }
+    }
+
+    @keyframes clickJiggle {
+      0% {
+        transform: scale(1);
+      }
+
+      35% {
+        transform: scale(0.96) rotate(-1.5deg);
+      }
+
+      70% {
+        transform: scale(1.03) rotate(1.5deg);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* =========================
+       CARD CONTENT
+    ========================== */
+
+    .icon {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      margin-bottom: 17px;
+
+      border-radius: 18px;
+
+      background: rgba(255, 255, 255, 0.13);
+
+      border: 1px solid rgba(255, 255, 255, 0.18);
+
+      font-size: 1.7rem;
+
+      box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .card-title {
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 1.45rem;
+      font-weight: normal;
+
+      margin-bottom: 5px;
+    }
+
+    .card-subtitle {
+      font-size: 0.84rem;
+      letter-spacing: 0.7px;
+
+      color: rgba(242, 231, 213, 0.66);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      margin-top: 35px;
+
+      color: rgba(242, 231, 213, 0.38);
+
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       TABLET
+    ========================== */
+
+    @media (max-width: 800px) {
+      body {
+        align-items: flex-start;
+      }
+
+      .links {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .link-card,
+      .link-card:nth-child(4),
+      .link-card:nth-child(5) {
+        grid-column: auto;
+      }
+
+      .link-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .name {
+        letter-spacing: -2px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 520px) {
+      body {
+        padding: 35px 16px;
+      }
+
+      .header {
+        margin-bottom: 28px;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .link-card,
+      .link-card:nth-child(4),
+      .link-card:nth-child(5),
+      .link-card:last-child {
+        grid-column: 1;
+      }
+
+      .link-card {
+        min-height: 145px;
+      }
+
+      .search-form {
+        padding-left: 18px;
+      }
+
+      .search-button {
+        width: 50px;
+        height: 50px;
+      }
+
+      .quote {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Respect reduced-motion settings */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+
   <main class="page">
-    <h1>AR<span>♥</span></h1>
 
-    <form class="search" action="https://www.google.com/search" method="GET">
-      <input name="q" type="text" placeholder="Search Google..." />
-    </form>
+    <!-- =====================
+         HEADER
+    ====================== -->
 
-    <nav class="links">
-      <a href="https://austincc.blackboard.com/" target="_blank">Blackboard</a>
-      <a href="https://selfservice.austincc.edu/Student/" target="_blank">MyACC</a>
-      <a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
-      <a href="https://docs.google.com/" target="_blank">Google Docs</a>
-    </nav>
+    <header class="header">
 
-    <section class="quote">
-      “Gu Mang was not his stain, but the light in his heart that had never gone out.”
+      <h1 class="name">
+        AR<span class="heart">♥</span>
+      </h1>
+
+      <p class="quote">
+        “Gu Mang was not his stain, but the light in his heart that had never gone out.”
+      </p>
+
+    </header>
+
+    <!-- =====================
+         GOOGLE SEARCH
+    ====================== -->
+
+    <section class="search-container">
+
+      <form
+        class="search-form"
+        action="https://www.google.com/search"
+        method="GET"
+      >
+
+        <input
+          type="text"
+          name="q"
+          placeholder="what's on your mind?"
+          autocomplete="off"
+          aria-label="Search Google"
+        />
+
+        <button
+          class="search-button"
+          type="submit"
+          aria-label="Search"
+        >
+          ⌕
+        </button>
+
+      </form>
+
+      <div class="search-label">
+        search google
+      </div>
+
     </section>
 
-    <section class="info">
-      <span id="time"></span>
-      <span id="date"></span>
-      <span>Taylor, TX</span>
-      <span id="weather"></span>
+    <!-- =====================
+         QUICK LINKS
+    ====================== -->
+
+    <section class="links">
+
+      <!-- MY ACC -->
+
+      <a
+        class="link-card acc"
+        href="https://austincc.okta.com/app/austincc_ellucianselfservice_1/exk3g0ri04eFxq0ei2p7/sso/saml"
+      >
+
+        <div class="icon">✦</div>
+
+        <div class="card-title">
+          My ACC
+        </div>
+
+        <div class="card-subtitle">
+          Student Self Service
+        </div>
+
+      </a>
+
+
+      <!-- BLACKBOARD -->
+
+      <a
+        class="link-card blackboard"
+        href="https://acconline.austincc.edu/ultra/stream"
+      >
+
+        <div class="icon">⌘</div>
+
+        <div class="card-title">
+          Blackboard
+        </div>
+
+        <div class="card-subtitle">
+          ACC Online
+        </div>
+
+      </a>
+
+
+      <!-- CHATGPT -->
+
+      <a
+        class="link-card study"
+        href="https://chatgpt.com/"
+      >
+
+        <div class="icon">♡</div>
+
+        <div class="card-title">
+          Study Buddy
+        </div>
+
+        <div class="card-subtitle">
+          ChatGPT
+        </div>
+
+      </a>
+
+
+      <!-- GOOGLE DOCS -->
+
+      <a
+        class="link-card docs"
+        href="https://docs.google.com/"
+      >
+
+        <div class="icon">▤</div>
+
+        <div class="card-title">
+          Google Docs
+        </div>
+
+        <div class="card-subtitle">
+          Documents
+        </div>
+
+      </a>
+
+
+      <!-- EMAIL -->
+
+      <a
+        class="link-card email"
+        href="https://mail.google.com/"
+      >
+
+        <div class="icon">✉</div>
+
+        <div class="card-title">
+          Email
+        </div>
+
+        <div class="card-subtitle">
+          Gmail
+        </div>
+
+      </a>
+
     </section>
+
+    <footer>
+      AR ♥
+    </footer>
+
   </main>
 
-  <script src="script.js?v=10"></script>
+
+  <script>
+    /*
+      Adds the extra little jiggle when
+      a shortcut is actually clicked.
+    */
+
+    const cards = document.querySelectorAll(".link-card");
+
+    cards.forEach((card) => {
+
+      card.addEventListener("click", () => {
+
+        card.classList.remove("clicked");
+
+        void card.offsetWidth;
+
+        card.classList.add("clicked");
+
+      });
+
+    });
+  </script>
+
 </body>
 </html>
